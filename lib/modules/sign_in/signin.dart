@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_register/modules/forget_password/forget_password.dart';
 import 'package:login_register/modules/sign_up/signup.dart';
 import 'package:login_register/shared/components/components.dart';
 import 'package:page_transition/page_transition.dart';
@@ -54,7 +55,9 @@ class _SignInState extends State<SignIn> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(height: 10.0,),
+                            SizedBox(
+                              height: 10.0,
+                            ),
                             Text(
                               'Please fill below the required data to be one of the winners',
                               style: TextStyle(
@@ -68,25 +71,30 @@ class _SignInState extends State<SignIn> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 40.0,),
+                  SizedBox(
+                    height: 40.0,
+                  ),
                   defaultInputField(
                     label: 'Phone or email',
                     prefixIcon: Icons.email,
                     controller: phoneOrEmailController,
                     type: TextInputType.emailAddress,
                     validate: (value) {
-                      if (value == null || value.isEmpty){
+                      if (value == null || value.isEmpty) {
                         return 'phone or email must be not empty';
                       }
                       return null;
                     },
                   ),
-                  SizedBox(height: 40.0,),
+                  SizedBox(
+                    height: 40.0,
+                  ),
                   defaultInputField(
                     label: 'Password',
                     prefixIcon: Icons.lock,
-                    suffixIcon: visibleText ? Icons.visibility : Icons.visibility_off,
-                    funSuffixIcon: (){
+                    suffixIcon:
+                        visibleText ? Icons.visibility : Icons.visibility_off,
+                    funSuffixIcon: () {
                       setState(() {
                         visibleText = !visibleText;
                       });
@@ -94,7 +102,7 @@ class _SignInState extends State<SignIn> {
                     isPassword: visibleText,
                     controller: passwordController,
                     type: TextInputType.visiblePassword,
-                    validate: (value){
+                    validate: (value) {
                       if (value == null || value.isEmpty) {
                         return 'password must be not empty';
                       } else if (passwordController.text.length < 8) {
@@ -103,7 +111,9 @@ class _SignInState extends State<SignIn> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20.0,),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -123,23 +133,35 @@ class _SignInState extends State<SignIn> {
                       ),
                       Container(
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                child: ForgetPassword(),
+                                type: PageTransitionType.fade,
+                              ),
+                            );
+                          },
                           child: Text('Forget Password?'),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 20.0,),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   defaultButton(
                     text: 'Sign In',
                     function: () {
                       if (formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(SnackBar(content: Text('Processing Data')));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Processing Data')));
                       }
                     },
                   ),
-                  SizedBox(height: 20.0,),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
